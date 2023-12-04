@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sum=0
-
 declare -a cwon
 
 while read -r line; do
@@ -14,9 +12,9 @@ while read -r line; do
 			[ "$n" -eq "$w" ] && ((amount+=1))
 		done
 	done
-	((cwon[$card]+=1))
+	((cwon[card]+=1))
 	for i in $(seq $((card+1)) $((card+amount))); do
-		((cwon[$i]+=cwon[$card]))
+		((cwon[i]+=cwon[card]))
 	done
 done
 
@@ -24,5 +22,5 @@ mkfifo sum
 for i in "${cwon[@]}"; do
 	echo $i > sum &
 done
-echo $(($(cat sum|tr '\n' '+';printf 0;)))
+echo $(($(tr '\n' '+'<sum;printf 0;)))
 rm sum
