@@ -18,10 +18,7 @@ while true; do
 	else
 		first=$t
 	fi
-	if [ $((last-first)) -le 1 ]; then
-		lower=$last
-		break
-	fi
+	[ $((last-first)) -le 1 ] && lower=$last && break
 done
 
 t=0
@@ -34,10 +31,7 @@ while true; do
 	else
 		last=$t
 	fi
-	if [ $((last-first)) -le 1 ]; then
-		upper=$first	
-		break
-	fi
+	[ $((last-first)) -le 1 ] && upper=$last && break
 done
 
-echo $((upper-lower+1))
+echo $((upper-lower))
