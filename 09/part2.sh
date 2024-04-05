@@ -23,14 +23,12 @@ extrapolate() {
 }
 
 minus() {
-	x=0
+	sign=+
 	while read line; do
-		if [ $x == 0 ]; then
+		if [ $sign == + ]; then
 			sign=-
-			x=1
 		else
 			sign=+
-			x=0
 		fi
 		printf "%d%s" $line $sign
 	done
